@@ -5,14 +5,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Set;
 
 @Data
+@Entity
+@Table(name = "accidents")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Accident {
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @EqualsAndHashCode.Include
     private int id;
 

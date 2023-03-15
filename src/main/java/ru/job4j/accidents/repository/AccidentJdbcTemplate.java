@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.AccidentType;
 
 import java.util.List;
 @Repository
@@ -41,5 +42,30 @@ public class AccidentJdbcTemplate {
 
     public void update(Accident accident) {
         jdbc.update("update accidents set name = ? where id = ?", accident.getName(), accident.getId());
+    }
+
+    public void addType(AccidentType accidentType) {
+        jdbc.update("insert into accident_types(name) values (?)", accidentType.getName());
+    }
+
+    public List<AccidentType> getAllTypes() {
+        return jdbc.query("select id, name from accident_types",
+                (rs, row) -> {
+                    AccidentType accident = new AccidentType();
+                    accident.setId(rs.getInt("id"));
+                    accident.setName(rs.getString("name"));
+                    return accident;
+                });
+    }
+
+    public AccidentType getTypeById(int id) {
+        return jdbc.queryForObject(
+                "select name from accident_types where id = ?",
+                (rs, row) -> {
+                    AccidentType accident = new AccidentType();
+                    accident.setName(rs.getString("name"));
+                    return accident;
+                }, id
+        );
     }
 }

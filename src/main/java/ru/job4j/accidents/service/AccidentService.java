@@ -35,4 +35,15 @@ public class AccidentService {
         accidentsRepository.update(accident);
     }
 
+    public void addType(AccidentType accidentType) {
+        accidentsRepository.addType(accidentType);
+    }
+
+    public List<AccidentType> getAllTypes() {
+        return accidentsRepository.getAllTypes();
+    }
+
+    public AccidentType getTypeById(int id) {
+        return accidentsRepository.getTypeById(id);
+    }
 }

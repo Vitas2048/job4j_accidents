@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
+import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.AccidentJdbcTemplate;
 import ru.job4j.accidents.repository.AccidentMem;
 
@@ -45,5 +46,13 @@ public class AccidentService {
 
     public AccidentType getTypeById(int id) {
         return accidentsRepository.getTypeById(id);
+    }
+
+    public void addRule(Rule rule) {
+        accidentsRepository.addRule(rule);
+    }
+
+    public List<Rule> getAllRules() {
+        return accidentsRepository.getAllRules();
     }
 }

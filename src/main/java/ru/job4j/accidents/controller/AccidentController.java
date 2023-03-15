@@ -35,12 +35,10 @@ public class AccidentController {
         accidentService.addType(new AccidentType(2, "Машина и человек"));
         accidentService.addType(new AccidentType(3, "Машина и велосипед"));
         model.addAttribute("types", accidentService.getAllTypes());
-        List<Rule> rules = List.of(
-                new Rule(1, "Статья. 1"),
-                new Rule(2, "Статья. 2"),
-                new Rule(3, "Статья. 3")
-        );
-        model.addAttribute("rules", rules);
+        accidentService.addRule(new Rule(1, "Статья. 1"));
+        accidentService.addRule(new Rule(2, "Статья. 2"));
+        accidentService.addRule(new Rule(3, "Статья. 3"));
+        model.addAttribute("rules", accidentService.getAllRules());
         return "createAccident";
     }
 

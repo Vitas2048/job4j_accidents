@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
+import ru.job4j.accidents.model.Rule;
 
 import java.util.List;
 @Repository
@@ -67,5 +68,19 @@ public class AccidentJdbcTemplate {
                     return accident;
                 }, id
         );
+    }
+
+    public void addRule(Rule rule) {
+        jdbc.update("insert into rules(name) values (?)", rule.getName());
+    }
+
+    public List<Rule> getAllRules() {
+        return jdbc.query("select id, name from rules",
+                (rs, row) -> {
+                    Rule rule = new Rule();
+                    rule.setId(rs.getInt("id"));
+                    rule.setName(rs.getString("name"));
+                    return rule;
+                });
     }
 }

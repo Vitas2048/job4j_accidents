@@ -14,14 +14,20 @@
     <title>Автомобильные инциденты</title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" th:href="@{/}">Автонарушители</a>
-        <form class="form-inline my-2 my-lg-0">
-            <p th:text="${users}"/>
-        </form>
-    </nav>
     <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="#">Главная</a>
+                    <a class="nav-item nav-link" th:href="@{/accidents}">Инциденты</a>
+                    <a class="nav-item nav-link active" th:href="@{/addAccident}">Добавить Инцидент</a>
+                </div>
+            </div>
+        </nav>
         <div class="row row-md">
+            <a th:href="@{/createAccident}" class="btn btn-secondary btn- active" role="button" aria-pressed="true">
+                Добавить Инцидент
+            </a>
             <table class="table">
                 <thead style="text-align: center">
                 <td scope="col">Проишествие</td>
@@ -30,7 +36,7 @@
                 </thead>
                 <tbody>
                     <tr style="text-align: center; vertical-align: middle" th:each="accident: ${accidents}">
-                        <td th:text="${accident.name}"/>
+                        <td><a th:text="${accident.name}" th:href="@{/edit/{accidentId}(accidentId=${accident.id})}"></a></td>
                         <td th:text="${accident.text}"/>
                         <td th:text="${accident.address}"/>
                     </tr>

@@ -20,4 +20,12 @@ public class AccidentService {
     public List<Accident> findAll() {
         return accidentMem.findAll();
     }
+
+    public Accident getById(int id) {
+        return accidentMem.findById(id);
+    }
+
+    public void update(Accident accident) {
+        accidentMem.update(accident);
+    }
 }

@@ -20,5 +20,24 @@
             <p th:text="${users}"/>
         </form>
     </nav>
+    <div class="container">
+        <div class="row row-md">
+            <table class="table">
+                <thead style="text-align: center">
+                <td scope="col">Проишествие</td>
+                <td scope="col">Описание</td>
+                <td scope="col">Адрес</td>
+                </thead>
+                <tbody>
+                    <tr style="text-align: center; vertical-align: middle" th:each="accident: ${accidents}">
+                        <td th:text="${accident.name}"/>
+                        <td th:text="${accident.text}"/>
+                        <td th:text="${accident.address}"/>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </body>
 </html>

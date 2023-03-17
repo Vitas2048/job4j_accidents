@@ -26,7 +26,15 @@ public class Accident {
 
     private String address;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "TYPE_ID_FK"))
     private AccidentType type;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "rules_accidents", joinColumns = {
+            @JoinColumn(name = "accident_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {
+            @JoinColumn(name = "rule_id", nullable = false, updatable = false)
+    })
     private Set<Rule> rules;
 }

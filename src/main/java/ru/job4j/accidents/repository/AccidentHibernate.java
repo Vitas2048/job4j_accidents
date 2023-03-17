@@ -8,8 +8,8 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.model.Rule;
 
+import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 @AllArgsConstructor

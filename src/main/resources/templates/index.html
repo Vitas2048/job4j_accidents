@@ -19,25 +19,25 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="#">Главная</a>
-                    <a class="nav-item nav-link" th:href="@{/accidents}">Инциденты</a>
-                    <a class="nav-item nav-link active" th:href="@{/addAccident}">Добавить Инцидент</a>
+                    <a class="nav-item nav-link active" th:href="@{/createAccident}">Добавить Инцидент</a>
                 </div>
             </div>
         </nav>
         <div class="row row-md">
-            <a th:href="@{/createAccident}" class="btn btn-secondary btn- active" role="button" aria-pressed="true">
-                Добавить Инцидент
-            </a>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">Имя</th>
+                    <td scope="col">Описание</td>
+                    <td scope="col">Адрес</td>
                     <th scope="col">Действия</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="accident: ${accidents}">
                     <td th:text="${accident.name}" />
+                    <td th:text="${accident.text}"/>
+                    <td th:text="${accident.address}"/>
                     <td>
                         <a th:href="@{|/formUpdateAccident?id=${accident.id}|}">
                             <i class="fa fa-edit">Редактировать</i>
@@ -46,22 +46,7 @@
                 </tr>
                 </tbody>
             </table>
-<!--            <table class="table">-->
-<!--                <thead style="text-align: center">-->
-<!--                <td scope="col">Проишествие</td>-->
-<!--                <td scope="col">Описание</td>-->
-<!--                <td scope="col">Адрес</td>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                    <tr style="text-align: center; vertical-align: middle" th:each="accident: ${accidents}">-->
-<!--                        <td><a th:text="${accident.name}" th:href="@{/edit/{accidentId}(accidentId=${accident.id})}"></a></td>-->
-<!--                        <td th:text="${accident.text}"/>-->
-<!--                        <td th:text="${accident.address}"/>-->
-<!--                    </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
         </div>
     </div>
-
 </body>
 </html>

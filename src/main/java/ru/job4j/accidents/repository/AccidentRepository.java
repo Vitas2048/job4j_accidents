@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import ru.job4j.accidents.model.Accident;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface AccidentRepository extends CrudRepository<Accident, Integer> {
 
@@ -15,7 +15,7 @@ public interface AccidentRepository extends CrudRepository<Accident, Integer> {
             left join fetch a.rules
             left join fetch a.type
             """)
-    List<Accident> findAll();
+    Set<Accident> findAll();
 
     @Query("""
             from Accident a

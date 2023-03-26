@@ -20,4 +20,8 @@ public class RuleService {
     public List<Rule> getAllRules() {
         return repository.findAll();
     }
+
+    public Rule getById(int id) {
+        return repository.findById(id);
+    }
 }

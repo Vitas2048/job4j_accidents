@@ -11,7 +11,7 @@
           integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
           integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  <title>Автомобильные инцеденты</title>
+  <title>Автомобильные инциденты</title>
 </head>
 <body>
 <div class="container">
@@ -19,7 +19,6 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" th:href="@{/}">Главная</a>
-        <a class="nav-item nav-link" th:href="@{/accidents}">Инциденты</a>
         <a class="nav-item nav-link active" th:href="@{/addAccident}">Добавить Инцидент</a>
       </div>
     </div>
@@ -27,7 +26,7 @@
   <div class="row pt-3">
     <div class="card" style="width: 100%">
       <div class="card-header">
-        Редатирование инцидента
+        Редактирование инцидента
       </div>
       <div class="card-body">
         <form th:action="@{/updateAccident}" method="POST" th:object="${accident}">
@@ -36,7 +35,32 @@
             <label for="name">Имя</label>
             <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
           </div>
-          <button type="submit" class="btn btn-primary">Сохранить</button>
+          <div class="form-group">
+            <label for="type.id">Тип</label>
+            <select class="form-control" id="type.id" name="type.id">
+              <option th:each="type: ${types}"
+                      th:text="${type.name}"
+                      th:value="${type.id}"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rIds" name="rIds">Статья</label>
+            <select class="form-control" id="rIds" name="rIds" multiple required>
+              <option th:each="rule: ${rules}"
+                      th:text="${rule.name}"
+                      th:value="${rule.id}">
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="text">Описание</label>
+            <input type="text" class="form-control" name="text" id="text" th:field="*{text}">
+          </div>
+          <div class="form-group">
+            <label for="address">Адрес</label>
+            <input type="text" class="form-control" name="address" id="address" th:field="*{address}">
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
         </form>
       </div>
     </div>

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -30,11 +31,12 @@ public class Accident {
     @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "TYPE_ID_FK"))
     private AccidentType type;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "rules_accidents", joinColumns = {
-            @JoinColumn(name = "accident_id", nullable = false, updatable = false)},
+            @JoinColumn(name = "accident_id")},
             inverseJoinColumns = {
-            @JoinColumn(name = "rule_id", nullable = false, updatable = false)
+            @JoinColumn(name = "rule_id")
     })
-    private Set<Rule> rules;
+    private Set<Rule> rules = new HashSet<>();
+
 }

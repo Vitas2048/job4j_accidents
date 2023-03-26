@@ -8,4 +8,6 @@ import java.util.List;
 public interface RuleRepository extends CrudRepository<Rule, Integer> {
 
     List<Rule> findAll();
+
+    Rule findById(int id);
 }
